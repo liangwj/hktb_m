@@ -1,0 +1,13 @@
+# Ignore the eclipse configuration files
+
+
+# Ignore Maven files
+# Ignore classes files
+.settings/
+.settings/*
+*.class
+*.db
+ehthumbs.db  
+Thumbs.db 
+
+# Other source repository archive directories (protects when importing)
