@@ -1,13 +1,9 @@
 package com.example.hktb.activity;
 
-import java.io.StringReader;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.example.hktb.R;
@@ -16,7 +12,6 @@ import com.example.hktb.entity.LoginData;
 import com.example.hktb.util.Http4Json;
 
 import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
 
 import android.app.Activity;
 import android.content.Context;
@@ -63,7 +58,7 @@ public class LoginActivity extends Activity {
 
 					String re = EntityUtils.toString(Http4Json.post(url, map)
 							.getEntity());
-					// 解析Json
+					// 解析Json放到对象中
 					JSONObject jsonO = new JSONObject(re);
 					boolean flag = (Boolean) jsonO.get("success");
 
@@ -77,15 +72,27 @@ public class LoginActivity extends Activity {
 					Editor editor = sharedPreferences.edit();// 获取编辑器
 					editor.putString("user_id", logData.getId());
 					editor.putString("user_rt", logData.getRemember_token());
-					editor.putString("pos_name", logData.getPosr().getName());
-					editor.putString("pos_title", logData.getPosr()
-							.getProfessional_title());
+					if (logData.getDoctor_id() != null) {
+						editor.putString("pos_name", logData.getDoctor()
+								.getName());
+						editor.putString("pos_title", logData.getDoctor()
+								.getProfessional_title());
+						System.out.println("医生");
+					} else if ((logData.getNurse_id() != null)) {
+						editor.putString("pos_name", logData.getNurse()
+								.getName());
+						editor.putString("pos_title", logData.getNurse()
+								.getProfessional_title());
+						System.out.println("护士");
+					}
 					editor.commit();// 提交修改
 
 					if (flag == true) {
 						Intent intent = new Intent(LoginActivity.this,
 								WorkSpaceActivity.class);
 						startActivity(intent);
+//						overridePendingTransition(R.anim.translate_in,
+//								R.anim.translate_out);
 					} else {
 						Toast.makeText(LoginActivity.this, "登陆失败",
 								Toast.LENGTH_SHORT).show();

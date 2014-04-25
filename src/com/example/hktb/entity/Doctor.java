@@ -1,6 +1,6 @@
 package com.example.hktb.entity;
 
-public class Position {
+public class Doctor {
 	private String id;
 	private String name;
 	private String professional_title;
