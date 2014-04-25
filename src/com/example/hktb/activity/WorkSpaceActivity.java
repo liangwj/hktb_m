@@ -17,16 +17,8 @@ import org.json.JSONObject;
 import com.example.hktb.R;
 
 import com.example.hktb.util.Http4Json;
-import com.example.hktb.util.JsonTools;
-
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 public class WorkSpaceActivity extends Activity {
 	private Map<String, Object> map;
@@ -37,12 +29,8 @@ public class WorkSpaceActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.workspace_act);
 
-		String loginfo = (String) (this.getIntent().getExtras()
-
-		.getString("loginfo"));
 		try {
 
-			map = JsonTools.parseJSON2Map(loginfo);
 			String id = "113983038848113";
 
 			HttpGet request = new HttpGet("http://fitark.org:9000/users/" + id
@@ -52,7 +40,7 @@ public class WorkSpaceActivity extends Activity {
 			HttpClient client = new DefaultHttpClient();
 			response = client.execute(request);
 			String re = EntityUtils.toString(response.getEntity());
-			System.out.println(re);
+			// System.out.println(re);
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
