@@ -43,7 +43,7 @@ public class WorkSpaceActivity extends Activity {
 		try {
 
 			map = JsonTools.parseJSON2Map(loginfo);
-			String id = map.get("id").toString();
+			String id = "113983038848113";
 
 			HttpGet request = new HttpGet("http://fitark.org:9000/users/" + id
 					+ "/workspaces.json");
