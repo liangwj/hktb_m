@@ -20,7 +20,7 @@
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,7 +38,12 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.example.hktb.activity.MainActivity"
+            android:name="com.example.hktb.activity.ShowDataActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
+             <activity
+            android:name="com.example.hktb.activity.ShowDetailActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>

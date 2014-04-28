@@ -21,6 +21,7 @@ import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -40,6 +41,8 @@ public class LoginActivity extends Activity {
 		ed_name = (EditText) this.findViewById(R.id.ed_name);
 		ed_psw = (EditText) this.findViewById(R.id.ed_psw);
 		btn_log = (Button) this.findViewById(R.id.btn_log);
+		
+
 
 		btn_log.setOnClickListener(new OnClickListener() {
 
@@ -91,8 +94,8 @@ public class LoginActivity extends Activity {
 						Intent intent = new Intent(LoginActivity.this,
 								WorkSpaceActivity.class);
 						startActivity(intent);
-//						overridePendingTransition(R.anim.translate_in,
-//								R.anim.translate_out);
+						 overridePendingTransition(R.anim.translate_in,
+						 R.anim.translate_out);
 					} else {
 						Toast.makeText(LoginActivity.this, "µÇÂ½Ê§°Ü",
 								Toast.LENGTH_SHORT).show();

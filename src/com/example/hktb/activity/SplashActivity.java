@@ -29,7 +29,7 @@ public class SplashActivity extends Activity {
 			public void run() {
 				super.run();
 				try {
-					sleep(3000);
+					sleep(2000);
 					loadMainUI();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
