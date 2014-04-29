@@ -19,17 +19,36 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.example.hktb.R;
+import com.example.hktb.fragment.AtmeFragment;
+import com.example.hktb.fragment.AttentionFragment;
+import com.example.hktb.fragment.BaseInfoFragment;
+import com.example.hktb.fragment.HelloFragment;
+import com.example.hktb.fragment.MyListFragment;
 import com.example.hktb.util.HttpUtils;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Paint;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 public class ShowDetailActivity extends Activity {
-	private TextView tv1;
-	private TextView tv2;
+	private FragmentManager fragmentManager;
+	private RadioGroup radioGroup;
+	private static RadioButton rb01;
+	private static RadioButton rb02;
+	private static RadioButton rb03;
+	private static RadioButton rb04;
 	private Node node, nodes;
 
 	@Override
@@ -38,15 +57,40 @@ public class ShowDetailActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.showdetail_act);
 
-		tv1 = (TextView) this.findViewById(R.id.tv1);
-		tv2 = (TextView) this.findViewById(R.id.tv2);
+		if (Build.VERSION.SDK_INT >= 11) {
+			StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+					.detectDiskReads().detectDiskWrites().detectNetwork()
+					.penaltyLog().build());
+			StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+					.detectLeakedSqlLiteObjects().detectLeakedClosableObjects()
+					.penaltyLog().penaltyDeath().build());
+		}
+
+		rb01 = (RadioButton) this.findViewById(R.id.rb01);
+		rb02 = (RadioButton) this.findViewById(R.id.rb02);
+		rb03 = (RadioButton) this.findViewById(R.id.rb03);
+		rb04 = (RadioButton) this.findViewById(R.id.rb04);
+
+		fragmentManager = getFragmentManager();
+		radioGroup = (RadioGroup) findViewById(R.id.rg_tab);
+		radioGroup
+				.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+					@Override
+					public void onCheckedChanged(RadioGroup group, int checkedId) {
+						FragmentTransaction transaction = fragmentManager
+								.beginTransaction();
+						Fragment fragment = getInstanceByIndex(checkedId);
+						transaction.replace(R.id.content, fragment);
+						transaction.commit();
+					}
+				});
 
 		// 取出获得的Intent
 		Intent intent = getIntent();
 		// 取出Intent中的数据，通过键值对的方式
 		String strXml = intent.getStringExtra("xml");
 		String url = "http://fitark.org:7500/files/" + strXml;
-
+		System.out.println(url);
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		// 得到一个DocumentBuilder解析类
 		DocumentBuilder builder;
@@ -58,24 +102,15 @@ public class ShowDetailActivity extends Activity {
 			// 得到xml文档的根元素节点
 			Element rootElement = document.getDocumentElement();
 
-			NodeList nodeList = rootElement.getElementsByTagName("dg");
-			NodeList nodeList2 = rootElement.getElementsByTagName("de");
-			for (int i = 0; i < nodeList2.getLength(); i++) {
-				node = nodeList2.item(i);
-				NamedNodeMap nodemap = node.getAttributes();
-				System.out.println("节点文本值：" + node.getTextContent());
-				int k = 0;
-				nodes = nodemap.item(k);
-				if (nodes.getTextContent().equals("EMR00001020101002")) {
-					tv1.setText(nodemap.item(k + 6).getTextContent());
-				}
-				if (nodes.getTextContent().equals("EMR00001020101003")) {
-					tv2.setText(nodemap.item(k + 6).getTextContent());
-				}
-				System.out.println("属性：" + nodes.getNodeName() + "="
-						+ nodes.getTextContent());
-
-			}
+			// NodeList nodeList = rootElement.getElementsByTagName("dg");
+			NodeList items = rootElement.getElementsByTagName("de");
+			for(int i=0;i<items.getLength();i++)
+				             {				                
+				                 Element item=(Element)items.item(i);
+				               String a =item.getAttribute("name");
+				               String b = item.getAttribute("value");
+				                System.out.println(a+"-------"+b);
+				             }
 
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
@@ -88,11 +123,24 @@ public class ShowDetailActivity extends Activity {
 			e.printStackTrace();
 		}
 
-		tv1.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
-		tv1.getPaint().setAntiAlias(true);
-
-		tv2.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);
-		tv2.getPaint().setAntiAlias(true);
-
 	}
+
+	public static Fragment getInstanceByIndex(int index) {
+		Fragment fragment = null;
+		if (rb01.getId() == index) {
+			fragment =  new BaseInfoFragment() ;
+			return fragment;
+		} else if (rb02.getId() == index) {
+			fragment = new AtmeFragment();
+			return fragment;
+		} else if (rb03.getId() == index) {
+			fragment = new MyListFragment();
+			return fragment;
+		} else if (rb04.getId() == index) {
+			fragment = new HelloFragment();
+			return fragment;
+		}
+		return fragment;
+	}
+
 }

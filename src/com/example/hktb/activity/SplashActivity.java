@@ -4,7 +4,9 @@ import com.example.hktb.R;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.animation.AlphaAnimation;
 import android.widget.RelativeLayout;
 
@@ -17,6 +19,11 @@ public class SplashActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash_act);
+		
+		 if (Build.VERSION.SDK_INT >= 11) {
+		      StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectDiskReads     ().detectDiskWrites().detectNetwork().penaltyLog().build());
+		   StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectLeakedSqlLiteObjects().detectLeakedClosableObjects().penaltyLog().penaltyDeath().build());
+		  }
 
 		spl_rl = (RelativeLayout) this.findViewById(R.id.spl_rl);
 

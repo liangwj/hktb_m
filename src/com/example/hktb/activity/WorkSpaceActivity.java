@@ -34,9 +34,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -44,7 +47,9 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -61,6 +66,11 @@ public class WorkSpaceActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.workspace_act);
+		
+		 if (Build.VERSION.SDK_INT >= 11) {
+		      StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectDiskReads     ().detectDiskWrites().detectNetwork().penaltyLog().build());
+		   StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectLeakedSqlLiteObjects().detectLeakedClosableObjects().penaltyLog().penaltyDeath().build());
+		  }
 
 		try {
 
@@ -121,12 +131,12 @@ public class WorkSpaceActivity extends Activity {
 
 				}
 				AbsListView.LayoutParams lp = new AbsListView.LayoutParams(
-						ViewGroup.LayoutParams.MATCH_PARENT, 100);
+						ViewGroup.LayoutParams.MATCH_PARENT, 200);
 				TextView textView = new TextView(WorkSpaceActivity.this);
 				textView.setLayoutParams(lp);
 				textView.setGravity(Gravity.CENTER_VERTICAL);
 				textView.setPadding(36, 0, 0, 0);
-				textView.setTextSize(40);
+				textView.setTextSize(32);
 				textView.setTextColor(Color.BLACK);
 				return textView;
 			}
@@ -140,12 +150,12 @@ public class WorkSpaceActivity extends Activity {
 
 				}
 				AbsListView.LayoutParams lp = new AbsListView.LayoutParams(
-						ViewGroup.LayoutParams.MATCH_PARENT, 100);
+						ViewGroup.LayoutParams.MATCH_PARENT, 200);
 				TextView textView = new TextView(WorkSpaceActivity.this);
 				textView.setLayoutParams(lp);
 				textView.setGravity(Gravity.CENTER_VERTICAL);
 				textView.setPadding(36, 0, 0, 0);
-				textView.setTextSize(20);
+				textView.setTextSize(26);
 				textView.setTextColor(Color.BLACK);
 				return textView;
 			}
@@ -191,9 +201,13 @@ public class WorkSpaceActivity extends Activity {
 					View convertView, ViewGroup parent) {
 				LinearLayout ll = new LinearLayout(WorkSpaceActivity.this);
 				ll.setOrientation(0);
+				ImageView imgView = new ImageView(getApplicationContext());
+				imgView.setImageResource(R.drawable.doctor);
+				imgView.setPadding(100, 0, 0, 0);
 				TextView textView = getTextView();
 				textView.setTextColor(Color.BLACK);
 				textView.setText(getGroup(groupPosition).toString());
+				ll.addView(imgView);
 				ll.addView(textView);
 
 				return ll;
@@ -204,9 +218,17 @@ public class WorkSpaceActivity extends Activity {
 					boolean isLastChild, View convertView, ViewGroup parent) {
 				LinearLayout ll = new LinearLayout(WorkSpaceActivity.this);
 				ll.setOrientation(0);
+				ImageView imgView = new ImageView(getApplicationContext());
+				int imgId[] = new int[] { R.drawable.a, R.drawable.b,
+						R.drawable.c, R.drawable.d, R.drawable.e };
+				imgView.setImageResource(imgId[childPosition]);
+				imgView.setPadding(100, 20, 0, 0);
+				LayoutParams mParams = new LayoutParams(200, 200);
+				imgView .setLayoutParams(mParams);
 				TextView textView = getTextViewChild();
 				textView.setText(getChild(groupPosition, childPosition)
 						.toString());
+				ll.addView(imgView);
 				ll.addView(textView);
 				return ll;
 			}

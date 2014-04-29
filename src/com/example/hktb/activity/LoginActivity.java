@@ -18,7 +18,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -42,7 +44,10 @@ public class LoginActivity extends Activity {
 		ed_psw = (EditText) this.findViewById(R.id.ed_psw);
 		btn_log = (Button) this.findViewById(R.id.btn_log);
 		
-
+		 if (Build.VERSION.SDK_INT >= 11) {
+		      StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectDiskReads     ().detectDiskWrites().detectNetwork().penaltyLog().build());
+		   StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectLeakedSqlLiteObjects().detectLeakedClosableObjects().penaltyLog().penaltyDeath().build());
+		  }
 
 		btn_log.setOnClickListener(new OnClickListener() {
 

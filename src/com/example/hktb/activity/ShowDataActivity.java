@@ -25,7 +25,9 @@ import com.google.gson.reflect.TypeToken;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -42,6 +44,11 @@ public class ShowDataActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.showdata_act);
+		
+		 if (Build.VERSION.SDK_INT >= 11) {
+		      StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectDiskReads     ().detectDiskWrites().detectNetwork().penaltyLog().build());
+		   StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectLeakedSqlLiteObjects().detectLeakedClosableObjects().penaltyLog().penaltyDeath().build());
+		  }
 
 		HttpGet request = new HttpGet(
 				"http://fitark.org:9000/us_reports.json?[us_report]");
@@ -86,7 +93,7 @@ public class ShowDataActivity extends Activity {
 
 				String strXml = usReports.get(position).getReport_document_id();
 				Intent intent = new Intent(ShowDataActivity.this,
-						ShowDetailActivity.class);
+						ShowPDFActivity.class);
 				intent.putExtra("xml", strXml);
 				startActivity(intent);
 				overridePendingTransition(R.anim.translate_in,

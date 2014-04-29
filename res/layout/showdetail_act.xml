@@ -5,39 +5,55 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/tabbar" >
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="姓名 ： "
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="姓名  " />
+            android:layout_height="60dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="医院移动终端"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <RadioGroup
+        android:id="@+id/rg_tab"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#FFFFFF"
         android:orientation="horizontal" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="性别 ： "
-            android:textStyle="bold" />
+        <RadioButton
+            android:id="@+id/rb01"
+            style="@style/tab"
+            android:drawableTop="@drawable/selector"
+            android:text="基础信息" />
 
-        <TextView
-            android:id="@+id/tv2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="性别 " />
-    </LinearLayout>
+        <RadioButton
+            android:id="@+id/rb02"
+            style="@style/tab"
+            android:drawableTop="@drawable/selector"
+            android:text="超声图" />
+
+        <RadioButton
+            android:id="@+id/rb03"
+            style="@style/tab"
+            android:drawableTop="@drawable/selector"
+            android:text="结论" />
+
+        <RadioButton
+            android:id="@+id/rb04"
+            style="@style/tab"
+            android:drawableTop="@drawable/selector"
+            android:text="列表" />
+    </RadioGroup>
 
 </LinearLayout>
