@@ -46,7 +46,22 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="com.example.hktb.activity.ShowPDFActivity"
+            android:name="com.example.hktb.fragment.A"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.hktb.fragment.B"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.hktb.fragment.C"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.example.hktb.fragment.D"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
         </activity>

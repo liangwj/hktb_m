@@ -44,11 +44,15 @@ public class ShowDataActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.showdata_act);
-		
-		 if (Build.VERSION.SDK_INT >= 11) {
-		      StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectDiskReads     ().detectDiskWrites().detectNetwork().penaltyLog().build());
-		   StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectLeakedSqlLiteObjects().detectLeakedClosableObjects().penaltyLog().penaltyDeath().build());
-		  }
+
+		if (Build.VERSION.SDK_INT >= 11) {
+			StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+					.detectDiskReads().detectDiskWrites().detectNetwork()
+					.penaltyLog().build());
+			StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+					.detectLeakedSqlLiteObjects().detectLeakedClosableObjects()
+					.penaltyLog().penaltyDeath().build());
+		}
 
 		HttpGet request = new HttpGet(
 				"http://fitark.org:9000/us_reports.json?[us_report]");
@@ -93,7 +97,7 @@ public class ShowDataActivity extends Activity {
 
 				String strXml = usReports.get(position).getReport_document_id();
 				Intent intent = new Intent(ShowDataActivity.this,
-						ShowPDFActivity.class);
+						ShowDetailActivity.class);
 				intent.putExtra("xml", strXml);
 				startActivity(intent);
 				overridePendingTransition(R.anim.translate_in,

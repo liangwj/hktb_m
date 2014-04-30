@@ -2,58 +2,67 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#EEEEEE"
     android:orientation="vertical" >
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/tabbar" >
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="40.0dip"
+        android:background="#EEEEEE" >
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:gravity="center_vertical|center_horizontal"
-            android:text="医院移动终端"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:id="@+id/text1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:text="报告"
+            android:textColor="#000000"
+            android:textSize="18.0dip" />
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:text="图像"
+            android:textColor="#000000"
+            android:textSize="18.0dip" />
+
+        <TextView
+            android:id="@+id/text3"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:text="视频"
+            android:textColor="#000000"
+            android:textSize="18.0dip" />
+
+        <TextView
+            android:id="@+id/text4"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:text="操作"
+            android:textColor="#000000"
+            android:textSize="18.0dip" />
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/content"
+    <ImageView
+        android:id="@+id/cursor"
+        android:layout_width="fill_parent"
+        android:layout_height="20px"
+        android:background="#EEEEEE"
+        android:scaleType="matrix"
+        android:src="#FFFFFF" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
-
-    <RadioGroup
-        android:id="@+id/rg_tab"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:orientation="horizontal" >
-
-        <RadioButton
-            android:id="@+id/rb01"
-            style="@style/tab"
-            android:drawableTop="@drawable/selector"
-            android:text="基础信息" />
-
-        <RadioButton
-            android:id="@+id/rb02"
-            style="@style/tab"
-            android:drawableTop="@drawable/selector"
-            android:text="超声图" />
-
-        <RadioButton
-            android:id="@+id/rb03"
-            style="@style/tab"
-            android:drawableTop="@drawable/selector"
-            android:text="结论" />
-
-        <RadioButton
-            android:id="@+id/rb04"
-            style="@style/tab"
-            android:drawableTop="@drawable/selector"
-            android:text="列表" />
-    </RadioGroup>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

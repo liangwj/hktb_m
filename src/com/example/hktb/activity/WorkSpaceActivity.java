@@ -136,7 +136,7 @@ public class WorkSpaceActivity extends Activity {
 				textView.setLayoutParams(lp);
 				textView.setGravity(Gravity.CENTER_VERTICAL);
 				textView.setPadding(36, 0, 0, 0);
-				textView.setTextSize(32);
+				textView.setTextSize(26);
 				textView.setTextColor(Color.BLACK);
 				return textView;
 			}
@@ -150,12 +150,12 @@ public class WorkSpaceActivity extends Activity {
 
 				}
 				AbsListView.LayoutParams lp = new AbsListView.LayoutParams(
-						ViewGroup.LayoutParams.MATCH_PARENT, 200);
+						ViewGroup.LayoutParams.MATCH_PARENT, 150);
 				TextView textView = new TextView(WorkSpaceActivity.this);
 				textView.setLayoutParams(lp);
 				textView.setGravity(Gravity.CENTER_VERTICAL);
 				textView.setPadding(36, 0, 0, 0);
-				textView.setTextSize(26);
+				textView.setTextSize(20);
 				textView.setTextColor(Color.BLACK);
 				return textView;
 			}
@@ -204,6 +204,8 @@ public class WorkSpaceActivity extends Activity {
 				ImageView imgView = new ImageView(getApplicationContext());
 				imgView.setImageResource(R.drawable.doctor);
 				imgView.setPadding(100, 0, 0, 0);
+				LayoutParams mParams = new LayoutParams(200, 200);
+				imgView .setLayoutParams(mParams);
 				TextView textView = getTextView();
 				textView.setTextColor(Color.BLACK);
 				textView.setText(getGroup(groupPosition).toString());
@@ -223,7 +225,7 @@ public class WorkSpaceActivity extends Activity {
 						R.drawable.c, R.drawable.d, R.drawable.e };
 				imgView.setImageResource(imgId[childPosition]);
 				imgView.setPadding(100, 20, 0, 0);
-				LayoutParams mParams = new LayoutParams(200, 200);
+				LayoutParams mParams = new LayoutParams(150, 150);
 				imgView .setLayoutParams(mParams);
 				TextView textView = getTextViewChild();
 				textView.setText(getChild(groupPosition, childPosition)

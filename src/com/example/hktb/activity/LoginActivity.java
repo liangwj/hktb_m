@@ -10,7 +10,6 @@ import com.example.hktb.R;
 
 import com.example.hktb.entity.LoginData;
 import com.example.hktb.util.Http4Json;
-
 import com.google.gson.Gson;
 
 import android.app.Activity;
@@ -30,6 +29,7 @@ import android.widget.Toast;
 
 public class LoginActivity extends Activity {
 
+	private boolean flag = false;
 	private EditText ed_name;
 	private EditText ed_psw;
 	private Button btn_log;
@@ -43,11 +43,15 @@ public class LoginActivity extends Activity {
 		ed_name = (EditText) this.findViewById(R.id.ed_name);
 		ed_psw = (EditText) this.findViewById(R.id.ed_psw);
 		btn_log = (Button) this.findViewById(R.id.btn_log);
-		
-		 if (Build.VERSION.SDK_INT >= 11) {
-		      StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectDiskReads     ().detectDiskWrites().detectNetwork().penaltyLog().build());
-		   StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectLeakedSqlLiteObjects().detectLeakedClosableObjects().penaltyLog().penaltyDeath().build());
-		  }
+
+		if (Build.VERSION.SDK_INT >= 11) {
+			StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+					.detectDiskReads().detectDiskWrites().detectNetwork()
+					.penaltyLog().build());
+			StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+					.detectLeakedSqlLiteObjects().detectLeakedClosableObjects()
+					.penaltyLog().penaltyDeath().build());
+		}
 
 		btn_log.setOnClickListener(new OnClickListener() {
 
@@ -68,8 +72,9 @@ public class LoginActivity extends Activity {
 							.getEntity());
 					// 解析Json放到对象中
 					JSONObject jsonO = new JSONObject(re);
-					boolean flag = (Boolean) jsonO.get("success");
-
+					if (!re.isEmpty()) {
+						flag = (Boolean) jsonO.get("success");
+					}
 					String data = jsonO.get("data").toString();
 
 					Gson gson = new Gson();
@@ -99,14 +104,13 @@ public class LoginActivity extends Activity {
 						Intent intent = new Intent(LoginActivity.this,
 								WorkSpaceActivity.class);
 						startActivity(intent);
-						 overridePendingTransition(R.anim.translate_in,
-						 R.anim.translate_out);
-					} else {
-						Toast.makeText(LoginActivity.this, "登陆失败",
-								Toast.LENGTH_SHORT).show();
+						overridePendingTransition(R.anim.translate_in,
+								R.anim.translate_out);
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
+					Toast.makeText(LoginActivity.this, "登陆失败",
+							Toast.LENGTH_SHORT).show();
 				}
 
 			}
