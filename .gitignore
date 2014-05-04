@@ -9,5 +9,6 @@
 *.db
 ehthumbs.db  
 Thumbs.db 
-
+/bin
+/gen
 # Other source repository archive directories (protects when importing)
