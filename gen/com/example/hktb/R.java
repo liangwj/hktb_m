@@ -35,28 +35,27 @@ public final class R {
         public static final int us_zk=0x7f020011;
     }
     public static final class id {
-        public static final int btn_log=0x7f080006;
-        public static final int cursor=0x7f080010;
-        public static final int ed_name=0x7f080004;
-        public static final int ed_psw=0x7f080005;
-        public static final int id=0x7f08000a;
+        public static final int btn_log=0x7f080005;
+        public static final int cursor=0x7f08000f;
+        public static final int ed_name=0x7f080003;
+        public static final int ed_psw=0x7f080004;
+        public static final int id=0x7f080009;
         public static final int imgV1=0x7f080001;
-        public static final int linearLayout1=0x7f08000b;
-        public static final int lv=0x7f080007;
-        public static final int menu_settings=0x7f080015;
-        public static final int spl_rl=0x7f080012;
-        public static final int state=0x7f080009;
-        public static final int text1=0x7f08000c;
-        public static final int text2=0x7f08000d;
-        public static final int text3=0x7f08000e;
-        public static final int text4=0x7f08000f;
-        public static final int textView1=0x7f080013;
-        public static final int time=0x7f080008;
-        public static final int title=0x7f080014;
-        public static final int viewpage=0x7f080011;
+        public static final int imgV2=0x7f080002;
+        public static final int linearLayout1=0x7f08000a;
+        public static final int lv=0x7f080006;
+        public static final int menu_settings=0x7f080014;
+        public static final int spl_rl=0x7f080011;
+        public static final int state=0x7f080008;
+        public static final int text1=0x7f08000b;
+        public static final int text2=0x7f08000c;
+        public static final int text3=0x7f08000d;
+        public static final int text4=0x7f08000e;
+        public static final int textView1=0x7f080012;
+        public static final int time=0x7f080007;
+        public static final int title=0x7f080013;
+        public static final int viewpage=0x7f080010;
         public static final int wv1=0x7f080000;
-        public static final int wv2a=0x7f080002;
-        public static final int wv2b=0x7f080003;
     }
     public static final class layout {
         public static final int a=0x7f030000;

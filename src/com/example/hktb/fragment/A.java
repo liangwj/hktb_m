@@ -22,6 +22,8 @@ public class A extends Activity {
 		wv1.getSettings().setBuiltInZoomControls(true);
 		wv1.getSettings().setUseWideViewPort(true);
 		wv1.getSettings().setLoadWithOverviewMode(true);
+		
+		
 		wv1.loadUrl(url.replace("xml", "png"));
 	}
 }

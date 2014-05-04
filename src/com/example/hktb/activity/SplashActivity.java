@@ -19,11 +19,15 @@ public class SplashActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash_act);
-		
-		 if (Build.VERSION.SDK_INT >= 11) {
-		      StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectDiskReads     ().detectDiskWrites().detectNetwork().penaltyLog().build());
-		   StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectLeakedSqlLiteObjects().detectLeakedClosableObjects().penaltyLog().penaltyDeath().build());
-		  }
+
+		if (Build.VERSION.SDK_INT >= 11) {
+			StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+					.detectDiskReads().detectDiskWrites().detectNetwork()
+					.penaltyLog().build());
+			StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+					.detectLeakedSqlLiteObjects().detectLeakedClosableObjects()
+					.penaltyLog().penaltyDeath().build());
+		}
 
 		spl_rl = (RelativeLayout) this.findViewById(R.id.spl_rl);
 
@@ -44,12 +48,13 @@ public class SplashActivity extends Activity {
 			}
 
 		}.start();
-	
+
 	}
 
 	private void loadMainUI() {
 		Intent intent = new Intent(this, LoginActivity.class);
 		startActivity(intent);
+		overridePendingTransition(R.anim.translate_in, R.anim.translate_out);
 		finish(); // 把当前activity从任务栈里面移除
 
 	}

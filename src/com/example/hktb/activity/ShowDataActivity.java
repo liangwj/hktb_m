@@ -55,7 +55,7 @@ public class ShowDataActivity extends Activity {
 		}
 
 		HttpGet request = new HttpGet(
-				"http://fitark.org:9000/us_reports.json?[us_report]");
+				"http://166.111.138.117:9000/us_reports.json?[us_report]");
 
 		HttpResponse response = null;
 		HttpClient client = new DefaultHttpClient();

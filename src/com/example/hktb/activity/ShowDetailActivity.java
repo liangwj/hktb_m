@@ -1,42 +1,10 @@
 package com.example.hktb.activity;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import android.os.Bundle;
-import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
-import android.view.Menu;
-import android.view.View;
-import java.util.ArrayList;
-import java.util.List;
-
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.app.Activity;
-import android.app.LocalActivityManager;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.DisplayMetrics;
-import android.view.Menu;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
-import android.widget.ImageView;
-import android.widget.TabHost;
-import android.widget.TextView;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -44,37 +12,41 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import com.example.hktb.R;
+import android.app.Activity;
+import android.app.LocalActivityManager;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.os.StrictMode;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
+import android.widget.ImageView;
+import android.widget.RadioGroup;
+import android.widget.TabHost;
+import android.widget.TextView;
 
+import com.example.hktb.R;
 import com.example.hktb.fragment.A;
 import com.example.hktb.fragment.B;
 import com.example.hktb.fragment.C;
 import com.example.hktb.fragment.D;
 import com.example.hktb.util.HttpUtils;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.app.LocalActivityManager;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.StrictMode;
-import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TabHost;
-import android.widget.TextView;
-
 public class ShowDetailActivity extends Activity {
 
-	private RadioGroup radioGroup;
 	private static String url;
 	private static String pic;
 	private Map<String, String> map;
@@ -109,7 +81,7 @@ public class ShowDetailActivity extends Activity {
 		Intent intent = getIntent();
 		// 取出Intent中的数据，通过键值对的方式
 		String strXml = intent.getStringExtra("xml");
-		url = "http://fitark.org:7500/files/" + strXml;
+		url = "http://166.111.138.117:7500/files/" +strXml;//strXml
 		System.out.println(url);
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		// 得到一个DocumentBuilder解析类
@@ -129,6 +101,7 @@ public class ShowDetailActivity extends Activity {
 				Element item = (Element) items.item(i);
 				String a = item.getAttribute("name");
 				String b = item.getAttribute("value");
+				System.out.println(a + b);
 				map.put(a, b);
 
 			}

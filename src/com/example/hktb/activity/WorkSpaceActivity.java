@@ -66,19 +66,23 @@ public class WorkSpaceActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.workspace_act);
-		
-		 if (Build.VERSION.SDK_INT >= 11) {
-		      StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectDiskReads     ().detectDiskWrites().detectNetwork().penaltyLog().build());
-		   StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectLeakedSqlLiteObjects().detectLeakedClosableObjects().penaltyLog().penaltyDeath().build());
-		  }
+
+		if (Build.VERSION.SDK_INT >= 11) {
+			StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+					.detectDiskReads().detectDiskWrites().detectNetwork()
+					.penaltyLog().build());
+			StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+					.detectLeakedSqlLiteObjects().detectLeakedClosableObjects()
+					.penaltyLog().penaltyDeath().build());
+		}
 
 		try {
 
 			sp = getSharedPreferences("user_info", Context.MODE_PRIVATE);
 			String id = sp.getString("user_id", "");
 
-			HttpGet request = new HttpGet("http://fitark.org:9000/users/" + id
-					+ "/workspaces.json");
+			HttpGet request = new HttpGet("http://166.111.138.117:9000/users/"
+					+ id + "/workspaces.json");
 
 			HttpResponse response = null;
 			HttpClient client = new DefaultHttpClient();
@@ -205,7 +209,7 @@ public class WorkSpaceActivity extends Activity {
 				imgView.setImageResource(R.drawable.doctor);
 				imgView.setPadding(100, 0, 0, 0);
 				LayoutParams mParams = new LayoutParams(200, 200);
-				imgView .setLayoutParams(mParams);
+				imgView.setLayoutParams(mParams);
 				TextView textView = getTextView();
 				textView.setTextColor(Color.BLACK);
 				textView.setText(getGroup(groupPosition).toString());
@@ -226,7 +230,7 @@ public class WorkSpaceActivity extends Activity {
 				imgView.setImageResource(imgId[childPosition]);
 				imgView.setPadding(100, 20, 0, 0);
 				LayoutParams mParams = new LayoutParams(150, 150);
-				imgView .setLayoutParams(mParams);
+				imgView.setLayoutParams(mParams);
 				TextView textView = getTextViewChild();
 				textView.setText(getChild(groupPosition, childPosition)
 						.toString());
@@ -304,7 +308,7 @@ public class WorkSpaceActivity extends Activity {
 				public void run() {
 					isExit = false; // 取消退出
 				}
-			}, 3000); // 如果2秒钟内没有按下返回键，则启动定时器取消掉刚才执行的任务
+			}, 5000);
 		} else {
 			finish();
 			System.exit(0);
