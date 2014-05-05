@@ -52,6 +52,7 @@ public class ShowDetailActivity extends Activity {
 	private Map<String, String> map;
 
 	Context context = null;
+	@SuppressWarnings("deprecation")
 	LocalActivityManager manager = null;
 	ViewPager pager = null;
 	TabHost tabHost = null;
@@ -81,7 +82,7 @@ public class ShowDetailActivity extends Activity {
 		Intent intent = getIntent();
 		// 取出Intent中的数据，通过键值对的方式
 		String strXml = intent.getStringExtra("xml");
-		url = "http://166.111.138.117:7500/files/" +strXml;//strXml
+		url = "http://166.111.138.117:7500/files/" + strXml;// strXml
 		System.out.println(url);
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		// 得到一个DocumentBuilder解析类
@@ -101,7 +102,7 @@ public class ShowDetailActivity extends Activity {
 				Element item = (Element) items.item(i);
 				String a = item.getAttribute("name");
 				String b = item.getAttribute("value");
-				System.out.println(a + b);
+				//System.out.println(a + b);
 				map.put(a, b);
 
 			}
@@ -175,12 +176,14 @@ public class ShowDetailActivity extends Activity {
 	 */
 	private void InitImageView() {
 		cursor = (ImageView) findViewById(R.id.cursor);
-		bmpW = BitmapFactory.decodeResource(getResources(), R.drawable.a)
+		bmpW = BitmapFactory.decodeResource(getResources(), R.drawable.curse)
 				.getWidth();// 获取图片宽度
 		DisplayMetrics dm = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(dm);
 		int screenW = dm.widthPixels;// 获取分辨率宽度
-		offset = (screenW / 4 - bmpW) / 2;// 计算偏移量
+		offset = (screenW / 4 - bmpW) / 2;
+
+		// (screenW / 4 - bmpW) / 2;// 计算偏移量
 		Matrix matrix = new Matrix();
 		matrix.postTranslate(offset, 0);
 		cursor.setImageMatrix(matrix);// 设置动画初始位置
@@ -280,11 +283,11 @@ public class ShowDetailActivity extends Activity {
 				break;
 			case 3:
 				if (currIndex == 0) {
-					animation = new TranslateAnimation(three, offset, 0, 0);
+					animation = new TranslateAnimation(offset, three, 0, 0);
 				} else if (currIndex == 1) {
-					animation = new TranslateAnimation(three, one, 0, 0);
+					animation = new TranslateAnimation(one, three, 0, 0);
 				} else if (currIndex == 2) {
-					animation = new TranslateAnimation(three, two, 0, 0);
+					animation = new TranslateAnimation(two, three, 0, 0);
 				}
 				break;
 			}

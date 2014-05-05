@@ -113,8 +113,8 @@ public class ShowDataActivity extends Activity {
 
 		for (int i = 0; i < usReports.size(); i++) {
 			Map<String, String> map = new HashMap<String, String>();
-			map.put("id", "ID iｓ　：" + usReports.get(i).getId());
-			map.put("time", "Time is ："
+			map.put("id", "  用户ID　：" + usReports.get(i).getId());
+			map.put("time", "数据添加时间 ："
 					+ usReports.get(i).getAppointment_time());
 			String state = usReports.get(i).getApproval_status();
 			if (state.equals("0")) {

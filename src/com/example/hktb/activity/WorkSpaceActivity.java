@@ -140,7 +140,7 @@ public class WorkSpaceActivity extends Activity {
 				textView.setLayoutParams(lp);
 				textView.setGravity(Gravity.CENTER_VERTICAL);
 				textView.setPadding(36, 0, 0, 0);
-				textView.setTextSize(26);
+				textView.setTextSize(30);
 				textView.setTextColor(Color.BLACK);
 				return textView;
 			}
@@ -159,7 +159,7 @@ public class WorkSpaceActivity extends Activity {
 				textView.setLayoutParams(lp);
 				textView.setGravity(Gravity.CENTER_VERTICAL);
 				textView.setPadding(36, 0, 0, 0);
-				textView.setTextSize(20);
+				textView.setTextSize(24);
 				textView.setTextColor(Color.BLACK);
 				return textView;
 			}
@@ -228,7 +228,7 @@ public class WorkSpaceActivity extends Activity {
 				int imgId[] = new int[] { R.drawable.a, R.drawable.b,
 						R.drawable.c, R.drawable.d, R.drawable.e };
 				imgView.setImageResource(imgId[childPosition]);
-				imgView.setPadding(100, 20, 0, 0);
+				imgView.setPadding(100, 0, 0, 0);
 				LayoutParams mParams = new LayoutParams(150, 150);
 				imgView.setLayoutParams(mParams);
 				TextView textView = getTextViewChild();
